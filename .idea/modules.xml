@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/lis.iml" filepath="$PROJECT_DIR$/.idea/lis.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/lis_itmo_speedrun.iml" filepath="$PROJECT_DIR$/.idea/lis_itmo_speedrun.iml" />
     </modules>
   </component>
 </project>

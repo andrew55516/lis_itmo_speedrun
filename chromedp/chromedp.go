@@ -12,14 +12,15 @@ import (
 )
 
 const (
-	lessonUrlTmpl        = "https://lis.itmo.ru/1/lesson/%s"
-	lisUrl               = "https://lis.itmo.ru/1/map"
-	submitButtonSelector = `button[class="button button_medium button_primary task-basis__submit"]`
+	lessonUrlTmpl         = "https://lis.itmo.ru/1/lesson/%s"
+	lisUrl                = "https://lis.itmo.ru/1/map"
+	submitButtonSelector  = `button[class="button button_medium button_primary task-basis__submit"]`
+	replicaButtonSelector = `button[class="replica-variant__button"]`
 )
 
 var opts = append(chromedp.DefaultExecAllocatorOptions[:],
 	chromedp.Flag("headless", false),
-	chromedp.ProxyServer("http://127.0.0.1:8080"),
+	//chromedp.ProxyServer("http://127.0.0.1:8080"),
 )
 
 func ProcessLesson(ctx context.Context) {
@@ -44,13 +45,13 @@ func ProcessLesson(ctx context.Context) {
 		reader := strings.NewReader(html)
 
 		doc, _ := goquery.NewDocumentFromReader(reader)
-		if doc.Find(`button[class="replica-variant__button"]`).Length() == 0 {
+		if doc.Find(replicaButtonSelector).Length() == 0 {
 			continue
 		}
 		chromedp.Run(
 			chromedpCtx,
-			chromedp.WaitVisible(`button[class="replica-variant__button"]`, chromedp.ByQuery),
-			chromedp.Click(`button[class="replica-variant__button"]`, chromedp.ByQuery),
+			chromedp.WaitVisible(replicaButtonSelector, chromedp.ByQuery),
+			chromedp.Click(replicaButtonSelector, chromedp.ByQuery),
 		)
 		time.Sleep(1 * time.Second)
 	}

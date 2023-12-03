@@ -2,7 +2,7 @@ package main
 
 import (
 	"context"
-	"lis/chromedp"
+	"lis_itmo_speedrun/chromedp"
 )
 
 func main() {
